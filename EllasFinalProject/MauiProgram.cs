@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 
 namespace EllasFinalProject
 {
@@ -8,6 +9,8 @@ namespace EllasFinalProject
         {
             var builder = MauiApp.CreateBuilder();
             builder
+                // Initialize the .NET MAUI Community Toolkit by adding the below line of code
+                .UseMauiCommunityToolkit()
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {

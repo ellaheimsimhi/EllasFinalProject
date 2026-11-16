@@ -114,7 +114,7 @@ namespace EllasFinalProject.ViewsModels
         public ICommand ShowPasswordCommand { get; }
         public ICommand SignInCommand { get; }
 
-
+        //Constructor
         public SignInViewModel()
         {
             //ShowPasswordCommand = new Command(OnTugglePasswordButtonClicked);
@@ -138,8 +138,8 @@ namespace EllasFinalProject.ViewsModels
 
             if (_isDebugMode)
             {
-                UserName = "admin@mail.com";
-                UserPassword = "admin";
+                UserName = "eheimsimhi@mail.com";
+                UserPassword = "Nod0204!";
             }
         }
 
