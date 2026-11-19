@@ -3,9 +3,19 @@
     x:Class="EllasFinalProject.Views.SignUpPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit ="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:views ="clr-namespace:EllasFinalProject.Views"
     x:DataType ="views:SignUpPage"
     Title="SignUpPage">
+
+    <ContentPage.Resources >
+        <Style x:Key ="InvalidEntryStyle" TargetType ="Entry">
+            <Setter Property = "TextColor" Value ="Red" />
+        </ Style >
+        <Style x:Key ="ValidEntryStyle" TargetType ="Entry">
+            <Setter Property = "TextColor" Value ="Wheat" />
+        </ Style >
+    </ ContentPage.Resources >
 
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -57,20 +67,24 @@
                     TextColor="Wheat" />
             </Border>
 
+
             <!--  mail  -->
-            <Border
-                Margin="0,0,0,10"
-                Padding="10"
-                Stroke="#ccc"
-                StrokeShape=" RoundRectangle 8"
-                StrokeThickness=" 1">
-                <Entry
-                    FontSize=" 18 "
-                    Keyboard="Email"
-                    Placeholder="Email"
-                    TextColor="Wheat" 
-                    Text="{Binding UserEmail}"/>
-            </Border>
+            <Border>
+                            <Entry
+
+                                Keyboard ="Email"
+            Placeholder ="Email"
+            Text ="{ Binding UserEmail }"/>
+
+                            <Entry.Behaviors >
+                                <toolkit:EmailValidationBehavior
+            InvalidStyle ="{ StaticResource InvalidEntryStyle }"
+            ValidStyle ="{ StaticResource ValidEntryStyle }"
+            Flags =" ValidateOnValueChanged "/>
+
+                            </ Entry.Behaviors >
+
+            </ Border >
 
             <!--  password  -->
             <Border
