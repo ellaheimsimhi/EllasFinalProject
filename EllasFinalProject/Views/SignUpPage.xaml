@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
     x:Class="EllasFinalProject.Views.SignUpPage"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:toolkit ="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-    xmlns:views ="clr-namespace:EllasFinalProject.Views"
-    x:DataType ="views:SignUpPage"
-    Title="SignUpPage">
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui "
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml "
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:views="clr-namespace:EllasFinalProject.ViewsModels"
+    Title="SignUpPage"
+    x:DataType="views:SignUpViewModel">
 
-    <ContentPage.Resources >
-        <Style x:Key ="InvalidEntryStyle" TargetType ="Entry">
-            <Setter Property = "TextColor" Value ="Red" />
-        </ Style >
-        <Style x:Key ="ValidEntryStyle" TargetType ="Entry">
-            <Setter Property = "TextColor" Value ="Wheat" />
-        </ Style >
-    </ ContentPage.Resources >
+    <ContentPage.Resources>
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Wheat" />
+        </Style>
+    </ContentPage.Resources>
 
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -44,14 +44,14 @@
                 Margin="0,0,0,10"
                 Padding="10"
                 Stroke="#ccc"
-                StrokeShape=" RoundRectangle 8"
+                StrokeShape="RoundRectangle 8"
                 StrokeThickness="1">
 
                 <Entry
-                    FontSize=" 18 "
+                    FontSize="18"
                     Placeholder="First Name"
-                    TextColor="Wheat" 
-                    Text="{Binding FirstName}"/>
+                    Text="{Binding FirstName}"
+                    TextColor="Wheat" />
             </Border>
 
             <!--  family name  -->
@@ -59,62 +59,66 @@
                 Margin="0,0,0,10"
                 Padding="10"
                 Stroke="#ccc"
-                StrokeShape=" RoundRectangle 8"
-                StrokeThickness=" 1">
+                StrokeShape="RoundRectangle 8"
+                StrokeThickness="1">
                 <Entry
-                    FontSize=" 18 "
+                    FontSize="18"
                     Placeholder="Last Name"
                     TextColor="Wheat" />
             </Border>
 
+            <!--  email  -->
+            <Border
+                Margin="0,0,0,10"
+                Padding="10"
+                Stroke="#ccc"
+                StrokeShape="RoundRectangle 8"
+                StrokeThickness="1">
+                <Entry
+                    FontSize="18"
+                    Keyboard="Email"
+                    Placeholder="Email"
+                    Text="{Binding UserEmail}">
 
-            <!--  mail  -->
-            <Border>
-                            <Entry
-
-                                Keyboard ="Email"
-            Placeholder ="Email"
-            Text ="{ Binding UserEmail }"/>
-
-                            <Entry.Behaviors >
-                                <toolkit:EmailValidationBehavior
-            InvalidStyle ="{ StaticResource InvalidEntryStyle }"
-            ValidStyle ="{ StaticResource ValidEntryStyle }"
-            Flags =" ValidateOnValueChanged "/>
-
-                            </ Entry.Behaviors >
-
-            </ Border >
+                    <Entry.Behaviors>
+                        <toolkit:EmailValidationBehavior
+                            Flags="ValidateOnValueChanged"
+                            InvalidStyle="{StaticResource InvalidEntryStyle}"
+                            ValidStyle="{StaticResource ValidEntryStyle}" />
+                    </Entry.Behaviors>
+                </Entry>
+            </Border>
 
             <!--  password  -->
             <Border
                 Margin="0,0,0,10"
                 Stroke="#ccc"
-                StrokeShape=" RoundRectangle 8"
-                StrokeThickness=" 1">
+                StrokeShape="RoundRectangle 8"
+                StrokeThickness="1">
                 <Grid
                     Padding="10"
                     ColumnDefinitions="*,Auto"
                     VerticalOptions="Center">
 
                     <Entry
-                        x:Name="PasswordEntry"
                         BackgroundColor="Transparent"
-                        FontSize=" 18 "
-                        IsPassword="True"
+                        FontSize="18"
+                        IsPassword="{Binding EntryAsPassword}"
                         Placeholder="Password"
-                        Text=""
+                        Text="{Binding UserPassword}"
                         TextColor="Wheat"
                         VerticalOptions="Center" />
 
                     <Button
                         Margin="5,0,0,0"
                         Padding="0"
-                        BackgroundColor="Transparent"                        
+                        BackgroundColor="Transparent"
+                        Clicked="TogglePassordButton"
+                        Command="{Binding ShowPasswordCommand}"
                         FontFamily="MaterialIcons-Regular"
-                        FontSize=" 24 "
+                        FontSize="24"
                         HorizontalOptions="End"
-                        Text="&#xe8f5;"
+                        Text="{Binding PasswordIconCode}"
                         TextColor="White"
                         VerticalOptions="Center" />
 
@@ -126,10 +130,10 @@
                 Margin="0,0,0,10"
                 Padding="10"
                 Stroke="#ccc"
-                StrokeShape=" RoundRectangle 8"
-                StrokeThickness=" 1">
+                StrokeShape="RoundRectangle 8"
+                StrokeThickness="1">
                 <Entry
-                    FontSize=" 18 "
+                    FontSize="18"
                     Keyboard="Telephone"
                     Placeholder="Mobile"
                     Text=""
@@ -138,15 +142,14 @@
 
             <!--  sign up button  -->
             <Button
-                CornerRadius=" 8"
-                FontSize=" 20 "
-                HeightRequest=" 70 "
+                CornerRadius="8"
+                FontSize="20"
+                HeightRequest="70"
                 Text="Sign Up"
                 TextColor="White" />
 
             <!--  already have an account?  -->
             <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
-
                 <Label
                     Margin="0,10,0,0"
                     FontSize="18"
@@ -156,6 +159,7 @@
 
                 <Button
                     BackgroundColor="Transparent"
+                    Command="{Binding SignUpCommand}"
                     FontSize="16"
                     Text="SignIn"
                     TextColor="BlueViolet" />
