@@ -11,7 +11,8 @@ namespace EllasFinalProject
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new SignInPage());
+           // return new Window(new SignInPage());
+            return new Window(new SignUpPage());
         }
     }
 }

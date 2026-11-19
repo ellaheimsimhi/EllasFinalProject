@@ -12,4 +12,5 @@ public partial class SignInPage : ContentPage
         InitializeComponent();
         BindingContext = new SignInViewModel();
     }
+
 }
